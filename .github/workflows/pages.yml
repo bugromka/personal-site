@@ -1,5 +1,9 @@
 name: Deploy to GitHub Pages
 
+# Важно: Pages должен быть включён один раз вручную:
+#   Settings → Pages → Source: "GitHub Actions"
+# (авто-включение через GITHUB_TOKEN невозможно — нужен токен с правами администратора)
+
 on:
   push:
     branches: [arena/b99cf429-personal-site]
@@ -24,10 +28,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Check Pages is enabled
+        id: pages-check
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh api "repos/${GITHUB_REPOSITORY}/pages" >/dev/null 2>&1; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            {
+              echo "::error title=GitHub Pages не включён::Откройте Settings → Pages → Source: GitHub Actions и повторите запуск workflow."
+              echo "GitHub Pages не включён. Откройте Settings → Pages → Source: GitHub Actions и повторите запуск."
+            } >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

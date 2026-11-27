@@ -25,7 +25,14 @@ Telegram, карточки образования) на свои данные. �
 python3 -m http.server 8000
 ```
 
-## Публикация
+## Публикация (GitHub Pages)
 
-Изменения на ветке `arena/b99cf429-personal-site` публикуются на GitHub Pages
-(источник: эта ветка, папка `/`).
+Один раз включите Pages в настройках репозитория:
+
+**Settings → Pages → Build and deployment → Source: GitHub Actions**
+
+Дальше каждый push в ветку `arena/b99cf429-personal-site` автоматически
+публикует сайт через workflow `.github/workflows/pages.yml`.
+
+Альтернатива без workflow: Source: **Deploy from a branch** → ветка
+`arena/b99cf429-personal-site`, папка `/ (root)`.
