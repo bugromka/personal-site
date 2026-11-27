@@ -18,11 +18,10 @@ concurrency:
   group: pages
   cancel-in-progress: false
 
+# Блок environment намеренно не используется: окружение github-pages
+# создано GitHub с политикой ветки main, и наш токен не может её расширить.
 jobs:
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
