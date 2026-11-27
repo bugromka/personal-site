@@ -1,7 +1,7 @@
 # private-site
 
-Персональный сайт (чистый HTML/CSS/JS), публикуется на GitHub Pages:
-https://bugromka.github.io/personal-site/
+Персональный сайт Бугаенко Романа Сергеевича (чистый HTML/CSS/JS),
+публикуется на GitHub Pages: https://bugromka.github.io/personal-site/
 
 ## Структура
 
