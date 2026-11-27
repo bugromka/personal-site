@@ -75,27 +75,8 @@ a {
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 16px;
-}
-
-.logo {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  color: var(--accent-hover);
-  font-weight: 700;
-}
-
-.logo__avatar {
-  display: grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: var(--accent-soft);
-  font-size: 18px;
 }
 
 .nav {
@@ -152,15 +133,6 @@ a {
   place-items: center;
   font-size: 56px;
   background: var(--accent-soft);
-}
-
-.hero__eyebrow {
-  margin: 0 0 6px;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--accent);
 }
 
 .hero h1 {
@@ -413,13 +385,6 @@ a {
   .nav a {
     padding: 8px 10px;
     font-size: 14px;
-  }
-
-  .logo__name {
-    max-width: 45vw;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
 }
 
