@@ -1,0 +1,56 @@
+name: Deploy to GitHub Pages
+
+# Важно: Pages должен быть включён один раз вручную:
+#   Settings → Pages → Source: "GitHub Actions"
+# (авто-включение через GITHUB_TOKEN невозможно — нужен токен с правами администратора)
+
+on:
+  push:
+    branches: [main, arena/b99cf429-personal-site]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+# Блок environment намеренно не используется: окружение github-pages
+# создано GitHub с политикой ветки main, и наш токен не может её расширить.
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check Pages is enabled
+        id: pages-check
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh api "repos/${GITHUB_REPOSITORY}/pages" >/dev/null 2>&1; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            {
+              echo "::error title=GitHub Pages не включён::Откройте Settings → Pages → Source: GitHub Actions и повторите запуск workflow."
+              echo "GitHub Pages не включён. Откройте Settings → Pages → Source: GitHub Actions и повторите запуск."
+            } >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
