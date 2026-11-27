@@ -219,7 +219,7 @@ a {
   height: 64px;
   flex: 0 0 auto;
   margin-bottom: 16px;
-  border-radius: 14px;
+  border-radius: 50%;
   background: var(--accent-soft);
   font-size: 28px;
   overflow: hidden;
