@@ -382,3 +382,47 @@ a {
     transform: none;
   }
 }
+
+/* Любимые игры — ряд обложек в стиле Steam-библиотеки */
+.games {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.games a {
+  display: block;
+  width: 150px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.games a:hover,
+.games a:focus-visible {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+
+.games img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.games .img-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 2 / 3;
+  font-size: 42px;
+  background: var(--accent-soft);
+}
+
+@media (max-width: 480px) {
+  .games a {
+    width: 100px;
+  }
+}
