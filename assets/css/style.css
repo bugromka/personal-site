@@ -383,7 +383,7 @@ a {
   }
 }
 
-/* Любимые игры — ряд обложек в стиле Steam-библиотеки */
+/* Любимые игры — карточки с обложкой, годом, разработчиком и издателем */
 .games {
   display: flex;
   flex-wrap: wrap;
@@ -391,38 +391,71 @@ a {
   justify-content: center;
 }
 
-.games a {
+.game {
   display: block;
-  width: 150px;
+  width: 176px;
+  background: var(--surface);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: var(--shadow);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+  color: inherit;
 }
 
-.games a:hover,
-.games a:focus-visible {
+.game:hover,
+.game:focus-visible {
   transform: translateY(-6px);
   box-shadow: var(--shadow-hover);
 }
 
-.games img {
+.game__cover {
   display: block;
   width: 100%;
-  height: auto;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  background: var(--accent-soft);
 }
 
-.games .img-fallback {
+.game__body {
+  padding: 10px 12px 12px;
+}
+
+.game__title {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.3;
+  font-weight: 600;
+  color: var(--accent-hover);
+}
+
+.game__year {
+  margin: 5px 0 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.game__dev,
+.game__pub {
+  margin: 3px 0 0;
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--muted);
+}
+
+.game .img-fallback {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
   aspect-ratio: 2 / 3;
   font-size: 42px;
   background: var(--accent-soft);
 }
 
 @media (max-width: 480px) {
-  .games a {
-    width: 100px;
+  .game {
+    width: 132px;
   }
 }
