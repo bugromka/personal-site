@@ -101,6 +101,11 @@ a {
   outline: none;
 }
 
+.nav a[aria-current="page"] {
+  background: #f1eefc;
+  color: var(--accent);
+}
+
 /* ---------- Герой ---------- */
 
 .hero {
